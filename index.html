@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Birthday, Dad!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    .card {
+      text-align:center;
+      width: 85%;
+      height: 85%;
+      padding: 30px 30px 30px 30px;
+      border-radius: 30px;
+      background: #212121;
+      box-shadow: 15px 15px 30px rgb(25, 25, 25),
+                  -15px -15px 30px rgb(60, 60, 60);
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+      background-color: #212121;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);
+      background-size: 30px 30px;
+      background-position: -5px -5px;
+      margin: 0px 0px 50px 0px;
+      font-family: "Outfit", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+      color: #ffffff;
+      text-align: center;
+      font-size: 17px;
+    }
+
+    .reward-btn {
+      width: 120px;
+      height: 40px;
+      background-color: #101218;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin: 20px auto;
+    }
+    .IconContainer {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .IconContainer svg {
+      width: 40%;
+      z-index: 3;
+    }
+    .box-top {
+      transition: all 0.3s;
+    }
+    .text {
+      width: 70px;
+      height: 100%;
+      font-size: 13px;
+      color: #6a8ef6;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      font-weight: 600;
+    }
+    .reward-btn:hover .IconContainer .box-top {
+      transform: translateY(-5px);
+    }
+    .reward-btn:hover {
+      background-color: #202531;
+    }
+    .reward-btn:hover .coin {
+      transform: translateY(-5px);
+      transition-delay: 0.2s;
+    }
+    .coin {
+      width: 25%;
+      height: 25%;
+      background-color: #e4d61a;
+      position: absolute;
+      border-radius: 50%;
+      transition: all 0.3s;
+      z-index: 1;
+      border: 2px solid #ffe956;
+      margin-top: 4px;
+    }
+
+    .card-light {
+      text-align:center;
+      width: 85%;
+      height: 85%;
+      padding: 30px 30px 30px 30px;
+      border-radius: 30px;
+      background: #f1f1f1;
+      box-shadow: 15px 15px 30px rgb(145, 145, 145),
+                  -15px -15px 30px rgb(180, 180, 180);
+    }
+
+    .body-light {
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff;
+      background-image: radial-gradient(rgba(12, 12, 12, 0.171) 2px, transparent 0);
+      background-size: 30px 30px;
+      background-position: -5px -5px;
+      margin: 0px 0px 50px 0px;
+      font-family: "Outfit", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+      color: #000000;
+      text-align: center;
+      font-size: 17px;
+    }
+
+    .theme {
+      display: flex;
+      align-items: center;
+      -webkit-tap-highlight-color: transparent;
+      width: fit-content;
+      height: fit-content;
+    }
+
+    .theme__fill,
+    .theme__icon {
+      transition: 0.3s;
+    }
+
+    .theme__fill {
+      background-color: var(--bg);
+      display: block;
+      mix-blend-mode: difference;
+      position: fixed;
+      inset: 0;
+      height: 100%;
+      transform: translateX(-100%);
+      pointer-events: none;
+    }
+
+    .theme__icon,
+    .theme__toggle {
+      z-index: 1;
+    }
+
+    .theme__icon,
+    .theme__icon-part {
+      position: absolute;
+    }
+
+    .theme__icon {
+      display: block;
+      top: 0.5em;
+      left: 0.5em;
+      width: 1.5em;
+      height: 1.5em;
+    }
+
+    .theme__icon-part {
+      border-radius: 50%;
+      box-shadow: 0.4em -0.4em 0 0.5em hsl(0,0%,100%) inset;
+      top: calc(50% - 0.5em);
+      left: calc(50% - 0.5em);
+      width: 1em;
+      height: 1em;
+      transition: box-shadow 0.3s ease-in-out,
+          opacity 0.3s ease-in-out,
+          transform 0.3s ease-in-out;
+      transform: scale(0.5);
+    }
+
+    .theme__icon-part ~ .theme__icon-part {
+      background-color: hsl(0,0%,100%);
+      border-radius: 0.05em;
+      top: 50%;
+      left: calc(50% - 0.05em);
+      transform: rotate(0deg) translateY(0.5em);
+      transform-origin: 50% 0;
+      width: 0.1em;
+      height: 0.2em;
+    }
+
+    .theme__icon-part:nth-child(3) {
+      transform: rotate(45deg) translateY(0.45em);
+    }
+
+    .theme__icon-part:nth-child(4) {
+      transform: rotate(90deg) translateY(0.45em);
+    }
+
+    .theme__icon-part:nth-child(5) {
+      transform: rotate(135deg) translateY(0.45em);
+    }
+
+    .theme__icon-part:nth-child(6) {
+      transform: rotate(180deg) translateY(0.45em);
+    }
+
+    .theme__icon-part:nth-child(7) {
+      transform: rotate(225deg) translateY(0.45em);
+    }
+
+    .theme__icon-part:nth-child(8) {
+      transform: rotate(270deg) translateY(0.5em);
+    }
+
+    .theme__icon-part:nth-child(9) {
+      transform: rotate(315deg) translateY(0.5em);
+    }
+
+    .theme__label,
+    .theme__toggle,
+    .theme__toggle-wrap {
+      position: relative;
+      pointer-events: auto;
+    }
+
+    .theme__toggle,
+    .theme__toggle:before {
+      display: block;
+    }
+
+    .theme__toggle {
+      background-color: hsl(48,90%,85%);
+      border-radius: 25% / 50%;
+      box-shadow: 0 0 0 0.125em rgba(0,0,0,0.2);
+      padding: 0.25em;
+      width: 6em;
+      height: 3em;
+      -webkit-appearance: none;
+      appearance: none;
+      transition: background-color 0.3s ease-in-out,
+          box-shadow 0.15s ease-in-out,
+          transform 0.3s ease-in-out;
+    }
+
+    .theme__toggle:before {
+      background-color: hsl(48,90%,55%);
+      border-radius: 50%;
+      content: "";
+      width: 2.5em;
+      height: 2.5em;
+      transition: 0.3s;
+    }
+
+    .theme__toggle:focus {
+      box-shadow: 0 0 0 0.125em rgba(106,142,246,0.5);
+      outline: transparent;
+    }
+
+    .theme__toggle:checked {
+      background-color: hsl(198,90%,15%);
+    }
+
+    .theme__toggle:checked:before,
+    .theme__toggle:checked ~ .theme__icon {
+      transform: translateX(3em);
+    }
+
+    .theme__toggle:checked:before {
+      background-color: hsl(198,90%,55%);
+    }
+
+    .theme__toggle:checked ~ .theme__fill {
+      transform: translateX(0);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(1) {
+      box-shadow: 0.2em -0.2em 0 0.2em hsl(0,0%,100%) inset;
+      transform: scale(1);
+      top: 0.2em;
+      left: -0.2em;
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part ~ .theme__icon-part {
+      opacity: 0;
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(2) {
+      transform: rotate(45deg) translateY(0.8em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(3) {
+      transform: rotate(90deg) translateY(0.8em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(4) {
+      transform: rotate(135deg) translateY(0.8em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(5) {
+      transform: rotate(180deg) translateY(0.8em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(6) {
+      transform: rotate(225deg) translateY(0.8em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(7) {
+      transform: rotate(270deg) translateY(0.8em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(8) {
+      transform: rotate(315deg) translateY(0.8em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(9) {
+      transform: rotate(360deg) translateY(0.8em);
+    }
+
+    .theme__toggle-wrap {
+      margin: 0 0.75em;
+      width: fit-content;
+      height: fit-content;
+    }
+
+    header {
+      background-color: #191919;
+      padding: 1px 1px 1px 1px;
+      border-radius: 10px;
+    }
+
+    .headerl {
+      background-color: #f1f1f1;
+      padding: 1px 1px 1px 1px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+ <header id="Head">
+  <h1>🎉 Happy Birthday, Dad! 🎉</h1>
+  <label for="theme" class="theme" style="float: right; margin: -5.3% 1.5%; pointer-events: auto;">
+    <span class="theme__toggle-wrap">
+      <input id="theme" class="theme__toggle" type="checkbox" role="switch" name="theme" value="dark" onclick="LtoD()" checked>
+      <span class="theme__fill"></span>
+      <span class="theme__icon">
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+      </span>
+    </span>
+  </label>
+ </header>
+ <center>
+  <div class="card">
+   <p>Hey Dad,</p>
+<p>Happy 42nd birthday! Just wanted to say thanks for being such an awesome, fun, and super supportive dad. You always know how to make everyone laugh and help out when it really counts. Honestly, I couldn’t ask for a better person to guide me through life.</p>
+
+
+<p>Hope this year brings you tons of happiness, good health, and everything you deserve. You make every day better for the people around you, and I can’t wait to make more amazing memories with you in Japan!</p>
+
+
+<p>Here’s to more adventures, laughter, and good times ahead. Love you, Dad!</p>
+
+
+<p>
+From,<br><em>
+– Prabuditha</em>
+</p>
+
+   <button class="reward-btn" id="Bu" onclick="startConfetti()">
+    <span class="IconContainer">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 60 20" class="box-top box">
+        <path stroke-linecap="round" stroke-width="4" stroke="#6A8EF6" d="M2 18L58 18"></path>
+        <circle stroke-width="5" stroke="#6A8EF6" fill="#101218" r="7" cy="9.5" cx="20.5"></circle>
+        <circle stroke-width="5" stroke="#6A8EF6" fill="#101218" r="7" cy="9.5" cx="38.5"></circle>
+      </svg>
+
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 58 44" class="box-body box">
+        <mask fill="white" id="path-1-inside-1_81_19">
+          <rect rx="3" height="44" width="58"></rect>
+        </mask>
+        <rect mask="url(#path-1-inside-1_81_19)" stroke-width="8" stroke="#6A8EF6" fill="#101218" rx="3" height="44" width="58"></rect>
+        <line stroke-width="6" stroke="#6A8EF6" y2="29" x2="58" y1="29" x1="-3.61529e-09"></line>
+        <path stroke-linecap="round" stroke-width="5" stroke="#6A8EF6" d="M45.0005 20L36 3"></path>
+        <path stroke-linecap="round" stroke-width="5" stroke="#6A8EF6" d="M21 3L13.0002 19.9992"></path>
+      </svg>
+
+      <span class="coin"></span>
+    </span>
+    <span class="text">Celebrate</span>
+   </button>
+   <canvas id="confettiCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;"></canvas>
+  </div>
+
+<script>
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  let confetti = [];
+  let animationId = null;
+  let isAnimating = false;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  function startConfetti() {
+    addConfetti(100);
+
+    if (!isAnimating) {
+      isAnimating = true;
+      animateConfetti();
+    }
+  }
+
+  function addConfetti(count) {
+    for (let i = 0; i < count; i++) {
+      const fromLeft = i % 2 === 0;
+      confetti.push({
+        x: fromLeft ? 0 : canvas.width,
+        y: canvas.height,
+        r: Math.random() * 6 + 4,
+        d: Math.random() * 10 + 5,
+        color: `hsl(${Math.random() * 360}, 60%, 85%)`, 
+        tilt: Math.random() * 10 - 5,
+        tiltAngle: 0,
+        vx: (Math.random() * 4 + 2) * (fromLeft ? 1 : -1),
+        vy: -(Math.random() * 8 + 6)
+      });
+    }
+  }
+
+  function animateConfetti() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < confetti.length; i++) {
+      let c = confetti[i];
+      ctx.beginPath();
+      ctx.lineWidth = c.r;
+      ctx.strokeStyle = c.color;
+      ctx.shadowColor = c.color;    
+      ctx.shadowBlur = 8;
+      ctx.moveTo(c.x + c.tilt + c.r / 2, c.y);
+      ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 2);
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+
+    updateConfetti();
+
+    if (confetti.length > 0) {
+      animationId = requestAnimationFrame(animateConfetti);
+    } else {
+      isAnimating = false;
+    }
+  }
+
+  function updateConfetti() {
+    for (let i = confetti.length - 1; i >= 0; i--) {
+      let c = confetti[i];
+      c.x += c.vx;
+      c.y += c.vy;
+      c.vy += 0.2;
+      c.tiltAngle += 0.1;
+      c.tilt = Math.sin(c.tiltAngle) * 15;
+
+      if (c.y > canvas.height || c.x < 0 || c.x > canvas.width) {
+        confetti.splice(i, 1);
+      }
+    }
+  }
+
+  function LtoD() {
+    var body = document.body;
+    var card = document.querySelector('.card'); 
+    var buttons = document.getElementById('Bu');
+    var headers = document.getElementById('Head');
+    body.classList.toggle("body-light");
+    card.classList.toggle("card-light");
+    headers.classList.toggle("headerl");
+  }
+</script>
+ </center>
+</body>
+</html>
